@@ -1,0 +1,35 @@
+.choose-pay{
+  padding: 20px 34px;
+  .title{
+    text-align: center;
+    font-size: 36px;
+  }
+  .pay-item{
+    display: flex;
+    flex-direction: row;
+    padding: 20px 0;
+    border-bottom: 1px solid #F6F7F8;
+    .left-pic{
+      width: 64px;
+      height: 64px;
+    }
+    .name{
+      display: block;
+      flex: 1 0 auto;
+      font-size: 32px;
+      margin-left: 20px;
+      padding-top: 10px;
+    }
+    .right-pic{
+      width: 38px;
+      height: 38px;
+      margin-top: 13px;
+    }
+  }
+  .confirm-pay-btn{
+    border: 0;
+    background-image: linear-gradient( to right, #E67700, #F99223);
+    color: #FFF;
+    margin-top: 30px;
+  }
+}

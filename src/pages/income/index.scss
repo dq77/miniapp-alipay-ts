@@ -1,0 +1,95 @@
+.income-page{
+  background-image: url('https://assets.taozugong.com/baozugong/home/indextitlebg.png');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-color: #F6F7F8;
+  flex: 1 0 auto;
+  .scroll-item{
+    padding: 24px;
+    box-sizing:border-box;
+  }
+  .title-area{
+    z-index: 5;
+    position: relative;
+    color: #FFF;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 -14px;
+    padding: 0 14px 20px;
+    box-shadow: 0 10px 5px -2px rgba($color: #000000, $alpha: 0.1);
+    .top-one{
+      width: 30%;
+      font-size: 28px;
+      line-height: 60px;
+    }
+    .income{
+      font-size: 37px;
+      text-align: center;
+    }
+    .income-history{
+      text-align: right;
+    }
+  }
+  .income-card{
+    z-index: 3;
+    position: relative;
+    background-color: #fff;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 5px rgba($color: #000000, $alpha: 0.1);
+    .month-income{
+      padding: 50px;
+      .month-money{
+        font-size: 50px;
+        line-height: 60px;
+      }
+    }
+    .income-info{
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px 40px;
+      .cost,.all-income{
+        flex: 1 0 auto;
+        .info-title{
+          color: #999999;
+        }
+        .info-money{
+          font-size: 50px;
+          line-height: 60px;
+        }
+      }
+    }
+  }
+  .income-tabs{
+    .at-tabs__header{
+      background-color: #F6F7F8;
+      .at-tabs__item{
+        color: #6C6C6C;
+        padding: 20px 20px 8px;
+      }
+      .at-tabs__item--active{
+        color: #FF8827;
+        .at-tabs__item-underline{
+          background-color: #F78F1F;
+          width: 40px;
+          left: calc(50% - 20px);
+          height: 6px;
+        }
+      }
+    }
+    .at-tabs__body{
+      .at-tabs__underline{
+        background-color: transparent;
+      }
+    }
+  }
+  .income-tabs.fix-income-tab{
+    .at-tabs__header {
+      // position: fixed;
+      // left: 0;
+      // top: 0;
+      // z-index: 999
+    }
+  }
+}

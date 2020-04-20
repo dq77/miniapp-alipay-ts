@@ -1,0 +1,51 @@
+{
+  "id": "1754049",
+  "name": "包租公",
+  "font_family": "iconfont",
+  "css_prefix_text": "bzg-",
+  "description": "包租公图标库",
+  "glyphs": [
+    {
+      "icon_id": "11291661",
+      "name": "喇叭",
+      "font_class": "laba1",
+      "unicode": "ed51",
+      "unicode_decimal": 60753
+    },
+    {
+      "icon_id": "8836390",
+      "name": "htb－Arrow right02",
+      "font_class": "right1",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "2255358",
+      "name": "setting",
+      "font_class": "mzicon-setting",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "7891738",
+      "name": "kefu",
+      "font_class": "kefu",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "9065143",
+      "name": "location",
+      "font_class": "ionc--",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "6568236",
+      "name": "read more",
+      "font_class": "fenzu",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    }
+  ]
+}

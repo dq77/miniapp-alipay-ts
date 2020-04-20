@@ -1,0 +1,31 @@
+/* Custom Theme */
+$color-brand: #f78f1f;
+$color-brand-light: #f9ab57;
+$color-brand-dark: #c67219;
+@import "~taro-ui/dist/style/index.scss"; 
+.taro_router{
+  display: flex;
+  flex-direction: column;
+  .taro_page{
+    min-height: 100%;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    color: #333;
+  }
+}
+.blue{
+  color: #00A4FF
+}
+.red{
+  color: #FF1B1B
+}
+.orange{
+  color: #F78F1F
+}
+.gray{
+  color: #666
+}
+.tac{
+  text-align: center;
+}

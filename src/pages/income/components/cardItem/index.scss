@@ -1,0 +1,90 @@
+.income-card-one{
+  background-color: #fff;
+  box-shadow: 0 0 15px #DDD;
+  margin: 20px 0;
+  font-size: 24px;
+  line-height: 24px;
+  .card-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1PX solid #F6F7F8;
+    .user-info{
+      display: flex;
+      flex-direction: row;
+      .user-pic{
+        width: 40px;
+        height: 40px;
+        border-radius: 40px;
+        overflow: hidden;
+      }
+      .user-name{
+        padding: 14px 15px 4px 10px;
+        color: #666666;
+      }
+      .location-ico{
+        padding: 12px 0 6px;
+        color: #E5E5E5;
+      }
+      .user-addr{
+        padding: 14px 15px 4px 10px;
+        color: #999999;
+      }
+    }
+    .user-level{
+      font-size: 26px;
+      line-height: 26px;
+      padding: 14px 0 0;
+    }
+    .user-level.doing{
+      color: #00A4FF;
+    }
+    .user-level.end{
+      color: #F78F1F;
+    }
+  }
+  .good-cnt{
+    display: flex;
+    flex-direction: row;
+    padding: 16px 20px 24px;
+    color: #333333;
+    .good-pic{
+      width: 140px;
+      height: 140px;
+    }
+    .good-info{
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0 0 10px;
+      .good-title{
+
+      }
+      .good-detail{
+        margin-top: 20px;
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: row;
+        .detail-item{
+          flex: 1 0 auto;
+          text-align: center;
+          .detail-num{
+            font-size: 30px;
+            line-height: 44px;
+          }
+          .red{
+            font-size: 34px;
+            color: #FF1B1B;
+            font-weight: bold;
+          }
+          .detail-name{
+            margin-top: 10px;
+            font-size: 20px;
+            color: #666666;
+          }
+        }
+      }
+    }
+  }
+}

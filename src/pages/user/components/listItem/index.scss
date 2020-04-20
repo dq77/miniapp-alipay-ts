@@ -1,0 +1,18 @@
+.list-item-one{
+  background-color: #fff;
+  padding: 31px 34px 32px;
+  font-size: 28px;
+  line-height: 28px;
+  border-top: 1px solid #F6F7F8;
+  display: flex;
+  justify-content: space-between;
+  .item-right{
+    color: #CCC;
+    .right-info{
+      color: #666666;
+      font-size: 28px;
+      line-height: 28px;
+      margin-right: 20px;
+    }
+  }
+}

@@ -1,0 +1,98 @@
+.registerbeta{
+  display: flex;
+  flex-direction: column;
+  background-color: #FF6F40;
+  flex: 1;
+  align-self: stretch;
+  padding-bottom: 0;
+  min-height: 100vh;
+  .titlepic{
+    display: block;
+    position: relative;
+  }
+  .cnt-card{
+    padding: 30px;
+    display: block;
+    background-color: #FFF;
+    position: relative;
+    margin: -120px 20px 30px 20px;
+    border: 24px solid #FF9059;
+    border-radius: 12px;
+    .title{
+      display: block;
+      text-align: center;
+      color: #E4600B;
+      margin: 0 0 0;
+      font-size: 37px;
+    }
+    .subtitle{
+      display: block;
+      text-align: center;
+      color: #FF647E;
+      font-size: 20px;
+      margin: 4px 0 28px;
+    }
+    .at-form::after{
+      border-top-width: 0;
+      border-bottom-width: 0;
+    }
+    .at-input::after{
+      border-bottom-width: 0;
+    }
+    .regipt.at-input{
+      margin:  0 0 36px 0;
+      background-color: #F2F1F7;
+      box-shadow: inset 2px 3px 4px #E2E0E3;
+      padding: 14px 30px;
+      border-radius: 100px;
+      input{
+        font-size: 28px;
+        background-color: #F2F1F7;
+        line-height: 28px;
+      }
+    }
+    .codeArea{
+      display: flex;
+      .regipt{
+        width: auto;
+      }
+      .getcodebtn{
+        border: none;
+        margin-left: 40px;
+        width: 220px;
+        height: 70px;
+        border-radius: 100px;
+        background-color: #EB5720;
+        color: #FFF;
+        font-size: 28px;
+        line-height: 74px;
+      }
+    }
+    .tologin{
+      display: block;
+      margin: 0 auto;
+      width: 400px;
+      text-align: center;
+      color: #00A4FF;
+      font-size: 24px;
+    }
+    .signup{
+      height: 80px;
+      line-height: 84px;
+      margin-top: 30px;
+      width: 480px;
+      font-size: 42px;
+      color: #FFF;
+      background-image: linear-gradient(to right, #FA9C16, #EB5720);
+      border: none;
+      border-radius: 100px;
+    }
+    .info{
+      margin-top: 20px;
+      text-align: center;
+      color: #B0B0B0;
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+  }
+}

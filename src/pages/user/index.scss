@@ -1,0 +1,67 @@
+
+.user-page{
+  height: 100%;
+  background-color: #F6F7F8;
+  .top-area{
+    background-image: url('https://assets.taozugong.com/baozugong/home/userpagebg.png');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    padding: 24px 18px 50px 34px;
+    background-color: #F6F7F8;
+    .title-area{
+      z-index: 5;
+      position: relative;
+      color: #FFF;
+      display: flex;
+      justify-content: space-between;
+      .top-one{
+        width: 30%;
+        font-size: 28px;
+        line-height: 60px;
+      }
+      .usertitle{
+        font-size: 37px;
+        text-align: center;
+      }
+    }
+    .user-area{
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      color: #FFF;
+      .user-info{
+        display: flex;
+        .user-pic{
+          width: 100px;
+          height: 100px;
+          border-radius: 100px;
+          overflow: hidden;
+        }
+        .user-cnt{
+          margin-left: 30px;
+          .user-name{
+            font-size: 32px;
+            margin-top: 10px;
+          }
+          .user-mobile{
+            font-size: 20px;
+          }
+        }
+      }
+      .set-area{
+        display: flex;
+        padding: 16px 0 22px 0;
+        .setting-btn{
+          margin-left: 40px;
+          width: 50px;
+        }
+      }
+    }
+  }
+  .menu-list{
+    margin-top: 20px;
+  }
+}
+.fix-user-page{
+  min-height: 100vh;
+}

@@ -1,0 +1,131 @@
+.good-detail-page{
+  display: flex;
+  flex-direction: column;
+  background-color: #F6F7F8;
+  flex: 1;
+  color: #666;
+  height: 100vh;
+  .good-detail-scroll{
+    flex: 1;
+    .good-income-info{
+      box-shadow: 0 0 15px #DDD;
+      margin: 24px 24px 18px;
+      background-color: #fff;
+      font-size: 20px;
+      color: #666666;
+      .good-id-area{
+        padding: 18px 20px 16px;
+        border-bottom: 1px solid #F6F7F8;
+      }
+      .income-area{
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        .income-item{
+          padding: 15px 39px 20px;
+          .dtl-num{
+            font-size: 30px;
+            color: #333333;
+            line-height: 56px;
+          }
+          .dtl-num.red{
+            color: #FF1B1B;
+            font-size: 36px;
+          }
+        }
+      }
+    }
+    .tzg-tip{
+      font-size: 24px;
+      line-height: 48px;
+      margin-left: 25px;
+    }
+    .good-detail-card{
+      margin: 0 24px;
+      background-color: #FFF;
+      box-shadow: 0 0 15px #DDD;
+      .good-top-info{
+        padding: 30px 30px 20px;
+        border-bottom: 1px solid #F6F7F8;
+        display: flex;
+        .good-pic-area{
+          width: 140px;
+          height: 140px;
+          flex: 0 0 auto;
+          box-shadow: -5px 5px 15px #DDD;
+        }
+        .good-names-area{
+          flex: 1 0 auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          font-size: 24px;
+          padding-left: 18px;
+        }
+      }
+      .order-info-list{
+        font-size: 28px;
+        padding: 20px 0 30px;
+        .order-item{
+          display: flex;
+          justify-content: space-between;
+          padding: 12px 30px;
+        }
+      }
+    }
+    .saveback-card{
+      background-color: #FFF;
+      box-shadow: 0 0 15px #DDD;
+      margin: 50px 24px;
+      font-size: 32px;
+      color: #F78F1F;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      padding: 20px;
+      .item{
+        flex: 1 0 auto;
+      }
+    }
+  }
+  .risk-item{
+    padding: 10px 80px;
+    display: flex;
+    justify-content: space-between;
+    .label{
+      width: 50%;
+      text-align: right;
+    }
+    .value{
+      width: 50%;
+      text-align: center;
+    }
+  }
+  .plan-item{
+    display: flex;
+    font-size: 28px;
+    padding: 10px;
+    .info,.money{
+      width: 30%;
+    }
+    .time{
+      width: 40%;
+      text-align: center;
+    }
+  }
+  .plan-item.head{
+    color: #666;
+    font-size: 32px;
+  }
+  .good-detail-bottom-area{
+    .confirm-btn{
+      border: 0;
+      background-color: #F78F1F;
+      color: #FFF;
+      font-size: 34px;
+      line-height: 34px;
+      padding: 32px;
+      border-radius: 0;
+    }
+  }
+}
