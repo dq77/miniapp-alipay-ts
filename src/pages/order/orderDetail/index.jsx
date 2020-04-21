@@ -47,7 +47,10 @@ export default class Index extends Component {
       <View className='good-detail-page'>
         <ScrollView className='good-detail-scroll' scrollY onScrollToUpper={this.onScrollToUpper} onScroll={this.onScroll}>
           <View className='good-income-info'>
-            <View className='good-id-area'>资产包编号：2020031808965</View>
+            <View className='good-id-area'>
+              <View className="lef">资产包编号：2020031808965</View>
+              <View className="blue">出租中</View>
+            </View>
             <View className='income-area'>
               <View className='income-item'>
                 <View className='dtl-num red'>20%</View>
@@ -55,11 +58,11 @@ export default class Index extends Component {
               </View>
               <View className='income-item'>
                 <View className='dtl-num'>120天</View>
-                <View className='dtl-info'>出租时长</View>
+                <View className='dtl-info'>剩余时长</View>
               </View>
               <View className='income-item'>
                 <View className='dtl-num'>1800元</View>
-                <View className='dtl-info'>进货成本</View>
+                <View className='dtl-info'>待收租金</View>
               </View>
             </View>
           </View>
@@ -80,11 +83,13 @@ export default class Index extends Component {
               <View className="order-item"><View>进货成本</View><View>1800元</View></View>
               <View className="order-item"><View>租金收益</View><View>99元/月</View></View>
               <View className="order-item"><View>资产回购价</View><View>1600元</View></View>
+              <View className="order-item"><View>租赁开始时间</View><View>2020-03-19</View></View>
+              <View className="order-item"><View>租赁结束时间</View><View>2020-06-19</View></View>
             </View>
           </View>
           <View className="saveback-card">
             <View className="item" onClick={this.showRisk}>风控信息</View>
-            <View className="item" onClick={this.showPlan}>回款计划</View>
+            <View className="item" onClick={this.showPlan}>回款记录</View>
           </View>
         </ScrollView>
         <View className='good-detail-bottom-area'>
@@ -101,7 +106,7 @@ export default class Index extends Component {
           </AtModalContent>
         </AtModal>
         <AtModal isOpened={planModalShow} onClose={this.closeModal}>
-          <AtModalHeader>回款计划</AtModalHeader>
+          <AtModalHeader>回款记录</AtModalHeader>
           <AtModalContent>
             <View className="plan-item head"><View className="info">说明</View><View className="money">金额</View><View className="time">时间</View></View>
             <View className="plan-item"><View className="info">租金</View><View className="money">99.0</View><View className="time">2020-03-04</View></View>

@@ -14,14 +14,16 @@ export default class MySwiper extends Component {
     addGlobalClass: true
   }
 
-  bannerClick = item => {
-      console.log(item);
+  forward = item => {
+    Taro.navigateTo({
+      url: `/pages/order/orderDetail/index?no=1`
+    })
   }
 
   render() {
     const { bannerList } = this.props
     return (
-      <View className='income-card-one'>
+      <View className='income-card-one' onClick={this.forward}>
         <View className='card-top'>
           <View className='user-info'>
             <View className='user-pic'>
