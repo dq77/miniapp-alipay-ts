@@ -1,12 +1,22 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image, ScrollView } from '@tarojs/components'
+import { View, Button, Image, ScrollView } from '@tarojs/components'
 import { AtTabs, AtTabsPane } from 'taro-ui'
-import CardItem from './components/cardItem/index.jsx'
+import CardItem from './components/cardItem/index'
 import './index.scss'
 
 const URL = 'https://assets.taozugong.com/baozugong/activity/hellobzg/'
 
-export default class Index extends Component {
+export interface State{
+  current: number;
+}
+
+export default class Income extends Component<Object,State> {
+  constructor () {
+    super(...arguments)
+    this.state = {
+      current: 0
+    }
+  }
   static options = {
     addGlobalClass: true
   }
@@ -22,7 +32,7 @@ export default class Index extends Component {
       url: `/pages/activity/betaRegister/index`
     })
   }
-  handleClick (value) {
+  handleClick (value:number) {
     this.setState({
       current: value
     })
@@ -30,6 +40,7 @@ export default class Index extends Component {
 
   render () {
     const tabList = [{ title: '全部生意' }, { title: '进行中' }, { title: '已完成' }]
+    const { current } = this.state
     return (
       <View className='income-page'>
         <ScrollView className='scroll-item' scrollY onScrollToUpper={this.onScrollToUpper} onScroll={this.onScroll}>
@@ -54,8 +65,25 @@ export default class Index extends Component {
               </View>
             </View>
           </View>
-          <AtTabs className='income-tabs fix-income-tab' current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
-            <AtTabsPane current={this.state.current} index={0} >
+          <AtTabs className='income-tabs fix-income-tab' current={current} tabList={tabList} onClick={this.handleClick.bind(this)}>
+            <AtTabsPane current={current} index={0} >
+              <View className='card-list'>
+                {/* <CardItem/>
+                <CardItem/>
+                <CardItem/>
+                <CardItem/>
+                <CardItem/>
+                <CardItem/>
+                <CardItem/> */}
+                <View className="no-login">
+                  <View className="text-info">登录后查看……</View>
+                  <View className="btn-info">
+                    <Button className="btn">登录</Button>
+                  </View>
+                </View>
+              </View>
+            </AtTabsPane>
+            <AtTabsPane current={current} index={1}>
               <View className='card-list'>
                 <CardItem/>
                 <CardItem/>
@@ -66,18 +94,7 @@ export default class Index extends Component {
                 <CardItem/>
               </View>
             </AtTabsPane>
-            <AtTabsPane current={this.state.current} index={1}>
-              <View className='card-list'>
-                <CardItem/>
-                <CardItem/>
-                <CardItem/>
-                <CardItem/>
-                <CardItem/>
-                <CardItem/>
-                <CardItem/>
-              </View>
-            </AtTabsPane>
-            <AtTabsPane current={this.state.current} index={2}>
+            <AtTabsPane current={current} index={2}>
               <View className='card-list'>
                 <CardItem/>
                 <CardItem/>

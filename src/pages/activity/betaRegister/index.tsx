@@ -1,12 +1,28 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import { AtForm, AtInput, AtButton, AtModal, AtModalHeader, AtModalContent, AtModalAction, AtIcon } from 'taro-ui'
-import { getCode, signUp } from '../server.jsx'
+import { getCode, signUp } from '../server'
 import './index.scss'
 
 const URL = 'https://assets.taozugong.com/baozugong/activity/hellobzg/'
-
-export default class Index extends Component {
+export interface Props{
+  option: Menu;
+}
+export interface Menu{
+  name: string;
+  right?: string;
+  to: string;
+}
+export interface State{
+  name: string;
+  mobile: string;
+  code: string;
+  reason: string;
+  time: number;
+  disbtn: boolean;
+  modalShow: boolean;
+}
+export default class Index extends Component<Props, State> {
 
   config = {
     navigationBarTitleText: '内测申请'
@@ -66,7 +82,7 @@ export default class Index extends Component {
         break
     }
   }
-  setVal = (name, val) => {
+  setVal = (name:string, val:any) => {
     this.setState({ [name]: val })
   }
   closeDialog = () => {
@@ -111,7 +127,7 @@ export default class Index extends Component {
     const { time, disbtn, modalShow } = this.state
     return (
       <View className='registerbeta'>
-        <Image className='titlepic' src={`${URL}registitle.png`} mode='widthFix' style='width: 100%'></Image>
+        <View className="we"><Image className='titlepic' src={`${URL}registitle.png`} mode='widthFix' style='width: 100%'></Image></View>
         <View className='cnt-card'>
           <Text className='title'>申请成为内测用户</Text>
           <Text className='subtitle'>为保证审核通过率，请如实填写</Text>

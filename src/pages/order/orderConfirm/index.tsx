@@ -1,13 +1,15 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Button, ScrollView } from '@tarojs/components'
 import { AtNoticebar, AtIcon, AtModalContent } from 'taro-ui'
-import { getCode, signUp } from '../server.jsx'
-import PayType from './payType/index.jsx'
+import PayType from './payType/index'
 import './index.scss'
 
 const URL = 'https://assets.taozugong.com/baozugong/activity/hellobzg/'
-
-export default class Index extends Component {
+interface State{
+  name: string;
+  payModalShow: boolean;
+}
+export default class Index extends Component<object, State> {
 
   config = {
     navigationBarTitleText: '购买资产'
@@ -23,21 +25,21 @@ export default class Index extends Component {
 
   componentDidShow () { }
 
-  setVal = (name, val) => {
-    this.setState({ [name]: val })
-  }
   showRisk = (ev) => {
     this.setState({ payModalShow: true })
   }
   confirmPay = (type) => {
-    console.log(type);
+    console.log('调用支付API');
+    Taro.navigateTo({
+      url: `/pages/order/orderSuccess/index`
+    })
   }
   closeModal = () => {
     this.setState({ payModalShow: false })
   }
 
   render () {
-    const { name, payModalShow } = this.state
+    const { payModalShow } = this.state
     const popupStyle = { transform: `translateY(${Taro.pxTransform(-100)})` };
     return (
       <View className='order-confirm-page'>

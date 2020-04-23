@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro';
 import { baseUrl } from '../config';
 
-export default (options = { method: 'GET', data: {} }) => {
+export default (options = { method: 'GET', data: {}, url: '' }) => {
   return Taro.request({
     url: baseUrl + options.url,
     data: options.data,

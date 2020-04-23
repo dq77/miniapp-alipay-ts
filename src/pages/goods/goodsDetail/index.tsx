@@ -1,12 +1,18 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Button, ScrollView } from '@tarojs/components'
 import { AtModal, AtModalHeader, AtModalContent } from 'taro-ui'
-import { getCode, signUp } from '../server.jsx'
+import { getCode, signUp } from '../server'
 import './index.scss'
 
 const URL = 'https://assets.taozugong.com/baozugong/activity/hellobzg/'
 
-export default class Index extends Component {
+
+interface State{
+  name: string;
+  riskModalShow: boolean;
+  planModalShow: boolean;
+}
+export default class Index extends Component<object, State> {
 
   config = {
     navigationBarTitleText: '生意详情'
@@ -23,9 +29,6 @@ export default class Index extends Component {
 
   componentDidShow () { }
 
-  setVal = (name, val) => {
-    this.setState({ [name]: val })
-  }
   showRisk = (ev) => {
     this.setState({ riskModalShow: true })
   }
@@ -42,7 +45,7 @@ export default class Index extends Component {
   }
 
   render () {
-    const { name, riskModalShow, planModalShow } = this.state
+    const { riskModalShow, planModalShow } = this.state
     return (
       <View className='good-detail-page'>
         <ScrollView className='good-detail-scroll' scrollY onScrollToUpper={this.onScrollToUpper} onScroll={this.onScroll}>

@@ -1,13 +1,20 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, ScrollView } from '@tarojs/components'
+import { View, ScrollView } from '@tarojs/components'
 import { AtSearchBar, AtSegmentedControl } from 'taro-ui'
-import getChannel from '../../utils/channel.jsx'
-import MySwiper from '../../components/mySwiper/index.jsx'
-import CardItem from './components/cardItem/index.jsx'
+import getChannel from '../../utils/channel'
+import MySwiper, { Banner } from '../../components/mySwiper/index'
+import CardItem, { Good } from './components/cardItem/index'
 import { getBanner } from './server'
 import './index.scss'
 
-export default class Index extends Component {
+export interface State{
+  searchTxt: string;
+  bannerList: Array<Banner>;
+  goodList: Array<Good>;
+  tabIndex: number;
+  type: string;
+}
+export default class Index extends Component<Object,State> {
   constructor () {
     super(...arguments)
     this.state = {
@@ -35,16 +42,16 @@ export default class Index extends Component {
   initPage = () => {
 
     // 获取banner图片
-    // getBanner({ channel: getChannel(), count: '5' }).then(res => {
+    // getBanner({ channel: getChannel(), count: '5' }).then((res: Object) => {
       this.setState({
         bannerList: [{ url: 'https://assets.taozugong.com/baozugong/home/banner1.png', to: '/pages/activity/betaRegister/index' }]
       })
     // })
-    this.getGoodList()
+    this.getGoodList('')
   }
-  getGoodList = (type) => {
+  getGoodList = (type: String) => {
     // 获取资产包列表
-    // getBanner({ channel: getChannel(), count: '5', type: (type || 'few') }).then(res => {
+    getBanner({ channel: getChannel(), count: '5', type: (type || 'few') }).then(res => {
       this.setState({
         goodList: [
           { id: '12' },
@@ -55,7 +62,7 @@ export default class Index extends Component {
           { id: '17' }
         ]
       })
-    // })
+    })
   }
   onChange = (value) => {
     this.setState({
@@ -88,7 +95,7 @@ export default class Index extends Component {
             <MySwiper bannerList={bannerList}/>
           </View>
           <View className='tabarea'>
-            <AtSegmentedControl values={['最近生意', '热门生意']} onClick={this.changeTab.bind(this)} current={tabIndex} selectedColor='#FFCD86' fontSize='32'/>
+            <AtSegmentedControl values={['最近生意', '热门生意']} onClick={this.changeTab.bind(this)} current={tabIndex} selectedColor='#FFCD86' fontSize={32}/>
           </View>
           <View className='card-list'>
             { goodList.map(item => (

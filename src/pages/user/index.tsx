@@ -1,12 +1,18 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, ScrollView } from '@tarojs/components'
 import { AtIcon, AtTabsPane } from 'taro-ui'
-import ListItem from './components/listItem/index.jsx'
+import ListItem, { Menu } from './components/listItem/index'
 import './index.scss'
 
 const URL = 'https://assets.taozugong.com/baozugong/activity/hellobzg/'
+export interface Props{
+  good: Menu;
+}
+export interface State{
+  menuList: Array<Menu>;
+}
 
-export default class Index extends Component {
+export default class Index extends Component<Props, State> {
   static options = {
     addGlobalClass: true
   }
@@ -18,8 +24,8 @@ export default class Index extends Component {
     super(...arguments)
     this.state = {
       menuList: [
-        { name: '我的余额', right: '188.5', to:'/pages/activity/betaRegister/hello' },
-        { name: '邀请好友', to:'/pages/activity/betaRegister/hello' },
+        { name: '我的余额', right: '188.5', to:'/pages/user/balance/index' },
+        { name: '邀请好友', to:'/pages/user/inviteUser/index' },
         { name: '帮助中心', to:'/pages/activity/betaRegister/hello' },
         { name: '退出登录', to:'/pages/activity/betaRegister/hello' }
       ]
@@ -35,7 +41,7 @@ export default class Index extends Component {
   }
   handleClick (value) {
     this.setState({
-      current: value
+      menuList: value
     })
   }
 

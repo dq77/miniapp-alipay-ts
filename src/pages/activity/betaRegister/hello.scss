@@ -1,9 +1,10 @@
 .hellobzg{
   .titlepic{
     height: auto;
+    display: flex;
     
     .taro-img{
-      display: block;
+      display: flex;
     }
   }
 }

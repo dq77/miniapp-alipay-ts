@@ -1,8 +1,11 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { Component, Config } from '@tarojs/taro'
 import Index from './pages/index'
+
 import './styles/base.scss'
 import './app.scss'
 import './asset/iconfont/iconfont.css'
+
+
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -12,14 +15,27 @@ import './asset/iconfont/iconfont.css'
 
 class App extends Component {
 
-  config = {
+  /**
+   * 指定config的类型声明为: Taro.Config
+   *
+   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
+   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
+   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
+   */
+  config: Config = {
     pages: [
       'pages/index/index',
       'pages/income/index',
       'pages/user/index',
+      'pages/user/balance/index',
+      'pages/user/balance/cashOut/index',
+      'pages/user/inviteUser/index',
       'pages/goods/goodsDetail/index',
       'pages/order/orderConfirm/index',
       'pages/order/orderDetail/index',
+      'pages/order/orderSuccess/index',
+      'pages/login/index',
+      'pages/login/bindMobile/index',
       'pages/activity/betaRegister/index',
       'pages/activity/betaRegister/hello',
     ],

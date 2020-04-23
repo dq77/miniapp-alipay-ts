@@ -3,7 +3,17 @@ import { Button, Image, View } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import './index.scss'
 
-export default class MySwiper extends Component {
+export interface Props{
+  good: Good;
+}
+export interface Good{
+  id: string;
+}
+export interface State{
+  banner: Array<Good>;
+}
+
+export default class CardItem extends Component<Props, State> {
   constructor () {
     super(...arguments)
     this.state = {

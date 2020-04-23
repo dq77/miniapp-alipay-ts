@@ -3,7 +3,21 @@ import { View, Button, Image } from '@tarojs/components'
 import { AtFloatLayout } from "taro-ui"
 import './index.scss'
 
-export default class Popup extends Component {
+export interface Props{
+  onSubmit: Function;
+  onClose?: Function;
+  visible: boolean
+}
+export interface PayItem{
+  value: string;
+  name: string;
+  checked: boolean;
+}
+export interface State{
+  isShow: boolean
+  list: Array<PayItem>;
+}
+export default class Popup extends Component<Props, State> {
   static defaultProps = {
     visible: false,
     onClose: () => {}
@@ -58,7 +72,7 @@ export default class Popup extends Component {
   }
 
   handleClose = () => {
-    this.props.onClose()
+    this.props.onClose?this.props.onClose():null
   }
   submit = () => {
     this.props.onSubmit(this.state.list.filter(item => {

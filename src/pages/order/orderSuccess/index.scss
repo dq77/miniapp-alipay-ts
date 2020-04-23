@@ -1,0 +1,102 @@
+.order-success-page{
+  display: flex;
+  flex-direction: column;
+  background-color: #F6F7F8;
+  flex: 1;
+  color: #666;
+  height: 100vh;
+  .order-success-scroll{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    .top-bar{
+      background-color: #FFF9E4;
+      color: #CC7300;
+      line-height: 12px;
+      padding: 20px 20px 28px;
+      .iconfont{
+        vertical-align: bottom;
+      }
+      .top-text{
+        margin-left: 20px;
+        font-size: 24px;
+      }
+    }
+    .main-card-info{
+      background-color: #FFF;
+      padding: 50px;
+      margin-bottom: 20px;
+      .success-pic{
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+      }
+      .success-tip{
+        font-size: 36px;
+        text-align: center;
+        margin-top: 30px;
+      }
+    }
+    .good-detail-card{
+      flex-grow: 2;
+      background-color: #FFF;
+      .good-top-info{
+        padding: 30px 30px 20px;
+        border-bottom: 1px solid #F6F7F8;
+        display: flex;
+        .good-pic-area{
+          width: 190px;
+          height: 190px;
+          flex: 0 0 auto;
+          box-shadow: -5px 5px 15px #DDD;
+        }
+        .good-names-area{
+          min-width: 400px;
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          justify-content: space-between;
+          font-size: 24px;
+          padding-left: 18px;
+          .good-name{
+            word-wrap: break-word;
+            word-break: break-all;
+            max-width: 100%;
+          }
+          .good-num{
+            padding: 0 10px;
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+      .order-info-list{
+        font-size: 28px;
+        padding: 20px 0 30px;
+        .order-item{
+          display: flex;
+          justify-content: space-between;
+          padding: 12px 30px;
+        }
+      }
+      .btn-area{
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-around;
+        .info-btn{
+          padding: 20px 0 16px;
+          border: 1px solid #B5B5B5;
+          background-color: #fff;
+          color: #666;
+          font-size: 32px;
+          width: 310px;
+          text-align: center;
+        }
+        .info-btn:active{
+          color: #AAA;
+          border-color: #D5D5D5;
+        }
+      }
+    }
+  }
+}

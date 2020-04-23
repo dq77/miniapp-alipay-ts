@@ -92,4 +92,26 @@
       // z-index: 999
     }
   }
+  .no-login{
+    color: #F0B760;
+    font-size: 36px;
+    text-align: center;
+    .text-info{
+      margin: 220px 0 80px;
+      padding-left: 50px;
+    }
+    .btn-info{
+      width: 212px;
+      margin: 0 auto;
+      .btn{
+        border: 0;
+        background-color: #FACD89;
+        color: #FFF;
+        font-size: 36px;
+        line-height: 36px;
+        padding: 20px 0 16px;
+        border-radius: 0;
+      }
+    }
+  }
 }

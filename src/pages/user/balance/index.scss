@@ -1,0 +1,66 @@
+.balance-page{
+  display: flex;
+  flex-direction: column;
+  background-color: #F6F7F8;
+  flex: 1;
+  color: #666;
+  height: 100vh;
+  .balance-top-area{
+    background-color: #FFF;
+    padding: 24px 30px 30px;
+    .bal-card{
+      background-image: linear-gradient( to bottom, #FFBF5B, #FFB052);
+      padding: 20px;
+      color: #FFF;
+      font-size: 28px;
+      .info{
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 0 46px;
+        .num{
+          padding-top: 4px;
+          font-size: 76px;
+          line-height: 76px;
+        }
+        .btn-area{
+          .pull{
+            border: 0;
+            border-radius: 100px;
+            background-color: #FFD8A1;
+            color: #BE770D;
+            font-size: 36px;
+            line-height: 76px;
+            padding: 5px 75px 0;
+          }
+        }
+      }
+    }
+  }
+  .bal-tabs{
+    .at-tabs__header{
+      background-color: #F6F7F8;
+      .at-tabs__item{
+        color: #6C6C6C;
+        padding: 20px 20px 8px;
+      }
+      .at-tabs__item--active{
+        color: #FF8827;
+        .at-tabs__item-underline{
+          background-color: #F78F1F;
+          width: 40px;
+          left: calc(50% - 20px);
+          height: 6px;
+        }
+      }
+    }
+    .at-tabs__body{
+      .at-tabs__underline{
+        background-color: transparent;
+      }
+    }
+    .card-list{
+      margin-top: 20px;
+      background-color: #fff;
+    }
+  }
+}

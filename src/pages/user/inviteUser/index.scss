@@ -1,0 +1,36 @@
+.invite-page{
+  background-color: #E5333F;
+  height: 100vh;
+  position: relative;
+  .block{
+    height: 100px;
+    background-color: #D72432;
+  }
+  .titlepic{
+    height: auto;
+  }
+  .btn-area{
+    position: absolute;
+    top: 966px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 110px 0 110px;
+    .btn{
+      border: 1PX solid #F78F1F;
+      border-radius: 100px;
+      font-size: 34px;
+      line-height: 34px;
+      padding: 23px 50px 21px;
+    }
+    .link{
+      background-color: transparent;
+      color: #F78F1F;
+    }
+    .pic{
+      background-color: #F78F1F;
+      color: #FFF;
+    }
+  }
+}

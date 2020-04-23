@@ -1,12 +1,16 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Button, ScrollView } from '@tarojs/components'
 import { AtModal, AtModalHeader, AtModalContent } from 'taro-ui'
-import { getCode, signUp } from '../server.jsx'
 import './index.scss'
 
 const URL = 'https://assets.taozugong.com/baozugong/activity/hellobzg/'
 
-export default class Index extends Component {
+interface State{
+  name: string;
+  riskModalShow: boolean;
+  planModalShow: boolean;
+}
+export default class Index extends Component<object, State> {
 
   config = {
     navigationBarTitleText: '生意详情'
@@ -23,9 +27,6 @@ export default class Index extends Component {
 
   componentDidShow () { }
 
-  setVal = (name, val) => {
-    this.setState({ [name]: val })
-  }
   showRisk = (ev) => {
     this.setState({ riskModalShow: true })
   }
@@ -42,7 +43,7 @@ export default class Index extends Component {
   }
 
   render () {
-    const { name, riskModalShow, planModalShow } = this.state
+    const { riskModalShow, planModalShow } = this.state
     return (
       <View className='good-detail-page'>
         <ScrollView className='good-detail-scroll' scrollY onScrollToUpper={this.onScrollToUpper} onScroll={this.onScroll}>
@@ -85,6 +86,8 @@ export default class Index extends Component {
               <View className="order-item"><View>资产回购价</View><View>1600元</View></View>
               <View className="order-item"><View>租赁开始时间</View><View>2020-03-19</View></View>
               <View className="order-item"><View>租赁结束时间</View><View>2020-06-19</View></View>
+              <View className="order-item"><View>服务费率</View><View>8%</View></View>
+              <View className="order-item"><View>生意总收益</View><View>680元</View></View>
             </View>
           </View>
           <View className="saveback-card">
@@ -92,9 +95,9 @@ export default class Index extends Component {
             <View className="item" onClick={this.showPlan}>回款记录</View>
           </View>
         </ScrollView>
-        <View className='good-detail-bottom-area'>
+        {/* <View className='good-detail-bottom-area'>
           <Button className='confirm-btn' onClick={this.forward}>赚租金</Button>
-        </View>
+        </View> */}
         <AtModal isOpened={riskModalShow} onClose={this.closeModal}>
           <AtModalHeader>风控信息</AtModalHeader>
           <AtModalContent>
