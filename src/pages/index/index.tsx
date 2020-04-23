@@ -44,7 +44,7 @@ export default class Index extends Component<Object,State> {
     // 获取banner图片
     // getBanner({ channel: getChannel(), count: '5' }).then((res: Object) => {
       this.setState({
-        bannerList: [{ url: 'https://assets.taozugong.com/baozugong/home/banner1.png', to: '/pages/activity/betaRegister/index' }]
+        bannerList: [{ url: 'https://assets.taozugong.com/baozugong/home/banner1.png', to: '/pages/user/inviteUser/index' }]
       })
     // })
     this.getGoodList('')

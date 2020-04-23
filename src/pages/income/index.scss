@@ -4,9 +4,14 @@
   background-repeat: no-repeat;
   background-color: #F6F7F8;
   flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
   .scroll-item{
     padding: 24px;
     box-sizing:border-box;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
   }
   .title-area{
     z-index: 5;
@@ -62,6 +67,8 @@
     }
   }
   .income-tabs{
+    height: auto;
+    flex: 1 0 auto;
     .at-tabs__header{
       background-color: #F6F7F8;
       .at-tabs__item{
