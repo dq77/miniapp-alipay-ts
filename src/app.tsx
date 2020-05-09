@@ -34,10 +34,11 @@ class App extends Component {
       'pages/order/orderConfirm/index',
       'pages/order/orderDetail/index',
       'pages/order/orderSuccess/index',
-      'pages/login/index',
-      'pages/login/bindMobile/index',
+      // 'pages/login/index',
+      // 'pages/login/bindMobile/index',
       'pages/activity/betaRegister/index',
       'pages/activity/betaRegister/hello',
+      'pages/searchResult/index',
     ],
     window: {
       backgroundTextStyle: 'light',
