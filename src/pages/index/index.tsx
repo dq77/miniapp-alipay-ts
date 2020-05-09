@@ -79,7 +79,7 @@ export default class Index extends Component<Object,State> {
   }
   onActionClick = () => {
     Taro.navigateTo({
-      url: `/pages/activity/betaRegister/index`
+      url: `/pages/searchResult/index?keyWords=${this.state.searchTxt}`
     })
   }
 
