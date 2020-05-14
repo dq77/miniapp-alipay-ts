@@ -1,13 +1,14 @@
 import { getBrowserType, getQueryString } from "./util";
 import { getStorage, removeStorage, setStorage } from "./storage";
-import { serviecUrl } from "src/config";
+import getChannel from './channel'
+import { serviecUrl } from "../config";
 import Taro from "@tarojs/taro";
-import { getOpenId } from "src/pages/user/server";
+import { getOpenId } from "../pages/user/server";
 const filterUrlArr = ['#/pages/index/index', '#/pages/user/index', '/']
 
 // 多渠道登录方法
 export function authLogin() {
-  switch (getStorage('channel')) {
+  switch (getChannel()) {
     case 'wechat':
       // 微信浏览器内部调用授权
       wechatJsApi()
@@ -16,7 +17,7 @@ export function authLogin() {
       // 微信小程序调用登录
       weappLogin()
       break
-    case 'web':
+    case 'M_STATION':
       // 外部浏览器跳转登录页
       webLogin()
       break
@@ -102,3 +103,13 @@ export function webLogin() {
   })
 }
 
+export function checkToken () {
+  return new Promise((resolve, reject) => {
+    if (getStorage('Token')) {
+      resolve()
+    } else {
+      authLogin()
+      reject()
+    }
+  })
+}

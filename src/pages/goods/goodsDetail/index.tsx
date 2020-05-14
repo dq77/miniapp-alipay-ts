@@ -3,6 +3,7 @@ import { View, Text, Image, Button, ScrollView } from '@tarojs/components'
 import { AtModal, AtModalHeader, AtModalContent } from 'taro-ui'
 import { getCode, signUp } from '../server'
 import './index.scss'
+import { checkToken } from '../../../utils/accredit'
 
 const URL = 'https://assets.taozugong.com/baozugong/activity/hellobzg/'
 
@@ -39,9 +40,17 @@ export default class Index extends Component<object, State> {
     this.setState({ riskModalShow: false, planModalShow: false })
   }
   forward = () => {
-    Taro.navigateTo({
-      url: `/pages/order/orderConfirm/index?no=${this.$router.params.no}`
+    checkToken().then( res => {
+      Taro.navigateTo({
+        url: `/pages/order/orderConfirm/index?no=${this.$router.params.no}`
+      })
     })
+  }
+  onScrollToUpper = event => {
+
+  }
+  onScroll = event => {
+
   }
 
   render () {

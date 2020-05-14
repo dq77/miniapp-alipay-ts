@@ -1,4 +1,4 @@
-export default function getChannel() {
+export default function getChannel():string {
   switch (process.env.TARO_ENV) {
     case "h5":
       let host = window.location.host;
@@ -9,7 +9,7 @@ export default function getChannel() {
       } else if (host === "alipay.taozugong.com" || host === "alipay.taozugong.cn") {
         return "ALIPAY_LIFE";
       } else {
-        return "ALIPAY_LIFE";
+        return "M_STATION";
       }
     case "weapp":
       return "WeChat"; // 微信小程序
