@@ -24,14 +24,14 @@ export default class Index extends Component {
   render () {
     return (
       <View className='hellobzg'>
-        <View className="titlepic"><Image src={`${URL}title1.png`} mode="widthFix" style=' width: 100%; height: 100%'></Image></View>
-        <View className="titlepic"><Image src={`${URL}title2.png`} mode="widthFix" style=' width: 100%; height: 100%'></Image></View>
-        <View className="titlepic"><Image src={`${URL}title3.png`} mode="widthFix" style=' width: 100%; height: 100%'></Image></View>
-        <View className="titlepic"><Image src={`${URL}title4.png`} mode="widthFix" style=' width: 100%; height: 100%'></Image></View>
-        <View className="titlepic"><Image src={`${URL}title5.png`} mode="widthFix" style=' width: 100%; height: 100%'></Image></View>
-        <View className="titlepic"><Image src={`${URL}title6.png`} mode="widthFix" style=' width: 100%; height: 100%'></Image></View>
-        <View className="titlepic"><Image src={`${URL}title7.png`} mode="widthFix" style=' width: 100%; height: 100%'></Image></View>
-        <View className="titlepic"><Image src={`${URL}title8.png`} mode="widthFix" style=' width: 100%; height: 100%' onClick={() => this.toRegister()}></Image></View>
+        <View className="titlepic"><Image src={`${URL}title1.png`} mode="widthFix" style=' width: 100%;'></Image></View>
+        <View className="titlepic"><Image src={`${URL}title2.png`} mode="widthFix" style=' width: 100%;'></Image></View>
+        <View className="titlepic"><Image src={`${URL}title3.png`} mode="widthFix" style=' width: 100%;'></Image></View>
+        <View className="titlepic"><Image src={`${URL}title4.png`} mode="widthFix" style=' width: 100%;'></Image></View>
+        <View className="titlepic"><Image src={`${URL}title5.png`} mode="widthFix" style=' width: 100%;'></Image></View>
+        <View className="titlepic"><Image src={`${URL}title6.png`} mode="widthFix" style=' width: 100%;'></Image></View>
+        <View className="titlepic"><Image src={`${URL}title7.png`} mode="widthFix" style=' width: 100%;'></Image></View>
+        <View className="titlepic"><Image src={`${URL}title8.png`} mode="widthFix" style=' width: 100%;' onClick={() => this.toRegister()}></Image></View>
       </View>
     )
   }
