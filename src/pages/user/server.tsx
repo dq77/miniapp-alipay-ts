@@ -18,7 +18,15 @@ export const signUp = (data) => {
     data
   })
 }
-  
+
+/**
+ * 拿用户信息
+ */
+export const getUserInfo = (data?: any) => Request({
+  url: '/get_user_info',
+  method: 'get',
+  data,
+})
   /**
    * 注册
    * @param {mobile, password,verification,channel='APP'} data

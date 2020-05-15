@@ -2,14 +2,26 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, ScrollView } from '@tarojs/components'
 import { AtIcon, AtTabsPane } from 'taro-ui'
 import ListItem, { Menu } from './components/listItem/index'
+import { setStorage, getStorage } from '../../utils/storage';
 import './index.scss'
+import { checkToken } from '../../utils/accredit';
+import { ysfConfig } from '../../utils/kefu'
 
 const URL = 'https://assets.taozugong.com/baozugong/activity/hellobzg/'
+
+declare global {
+  interface Window {
+    ysf: object
+  }
+}
 export interface Props{
   good: Menu;
 }
+export interface UserInfo{ uid: number, username: string, mobile: string}
 export interface State{
   menuList: Array<Menu>;
+  userInfo: UserInfo
+  isLogin: boolean
 }
 
 export default class Index extends Component<Props, State> {
@@ -28,12 +40,31 @@ export default class Index extends Component<Props, State> {
         { name: '邀请好友', to:'/pages/user/inviteUser/index' },
         { name: '帮助中心', to:'/pages/activity/betaRegister/hello' },
         { name: '退出登录', to:'/pages/activity/betaRegister/hello' }
-      ]
+      ],
+      userInfo: {
+        uid: 0,
+        username: '包租公用户',
+        mobile: ''
+      },
+      isLogin: false
     }
   }
-  componentDidMount () { }
+  componentWillMount() {
+  }
+  componentDidMount () {
+  }
 
-  componentDidShow () { }
+  componentDidShow () {
+    if (getStorage('Token')) {
+      const userInfo = getStorage("userInfo")
+      if (userInfo != null && Object.keys(userInfo).length != 0) {
+        this.setState({
+          userInfo: userInfo,
+          isLogin: true
+        });
+      }
+    }
+  }
   toRegister() {
     Taro.navigateTo({
       url: `/pages/activity/betaRegister/hello`
@@ -44,9 +75,21 @@ export default class Index extends Component<Props, State> {
       menuList: value
     })
   }
+  topClick = () => {
+    if (this.state.isLogin) {
+      Taro.navigateTo({
+        url: "/pages/user/editInfo/index",
+      })
+    } else {
+      checkToken()
+    }
+  }
+  openKefu = () => {
+    ysfConfig(window.ysf)
+  }
 
   render () {
-    const { menuList } = this.state
+    const { menuList, userInfo, isLogin } = this.state
     return (
       <View className={process.env.TARO_ENV !== 'h5' ? 'fix-user-page user-page' : 'user-page'}>
         <View className='top-area'>
@@ -56,20 +99,26 @@ export default class Index extends Component<Props, State> {
             <View className='top-one'></View>
           </View>
           <View className='user-area'>
-            <View className='user-info'>
+            <View className='user-info' onClick={this.topClick}>
               <View className='user-pic'>
                 <Image src='https://assets.taozugong.com/baozugong/activity/hellobzg/title1.png' style='width: 100%; height: 100%'></Image>
               </View>
+              { isLogin ? (
               <View className='user-cnt'>
-                <View className='user-name'>bu鲁bu因</View>
-                <View className='user-mobile'>17502872222</View>
+                <View className='user-name'>{ userInfo.username || '包租公用户' }</View>
+                <View className='user-mobile'>{ userInfo.mobile }</View>
+              </View> ) : (
+              <View className='user-cnt'>
+                <View className='user-name user-login'>登录</View>
+                <View className='user-mobile'>登录后可享受更多特权</View>
               </View>
+              )}
             </View>
             <View className='set-area'>
               <View className='setting-btn'>
                 <AtIcon prefixClass='iconfont bzg' value='mzicon-setting' size='22'></AtIcon>
               </View>
-              <View className='setting-btn'>
+              <View className='setting-btn' onClick={this.openKefu}>
                 <AtIcon prefixClass='iconfont bzg' value='kefu' size='22'></AtIcon>
               </View>
             </View>

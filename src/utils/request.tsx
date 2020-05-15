@@ -1,12 +1,15 @@
 import Taro from '@tarojs/taro';
 import { baseUrl } from '../config';
+import { getStorage } from './storage';
 
 export default (options = { method: 'GET', data: {}, url: '' }) => {
+  const Token = getStorage('Token')
   return Taro.request({
     url: baseUrl + options.url,
     data: options.data,
     header: {
       'Content-Type': 'application/json',
+      Authorization: Token ? Token : '' // 请求携带token
     },
     method: options.method.toUpperCase(),
   }).then((res) => {
