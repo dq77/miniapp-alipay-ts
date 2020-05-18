@@ -1,13 +1,13 @@
 // 编辑个人资料
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image, Picker } from '@tarojs/components'
-import { AtList, AtListItem, AtModal } from 'taro-ui'
+import { View, Text, Image, Picker, Input, Label } from '@tarojs/components'
+import { AtList, AtListItem, AtModal, AtAvatar } from 'taro-ui'
 import ImagePicker from '../../../images/user/image-picker.png'
 // import Avatar from '../../../components/headPortrait'
 // import Upload from '../../../components/Upload'
 import { getStorage, removeStorage } from '../../../utils/storage'
 import { baseUrl } from '../../../config/index'
-import { getUserInfo } from '../server'
+import { getUserInfo, infoEdit } from '../server'
 
 import './index.scss'
 import getChannel from '../../../utils/channel'
@@ -19,9 +19,11 @@ export interface Props{
 export interface State{
   isOpened: boolean
   genderPicker: Array<{text: string, value: string}>
-  gender: string
+  gender: number
+  userInfo: UserInfo
   birthday: string
   photoUrl: string
+  ImagePrivew: string | undefined
   logout: boolean
 }
 export default class EditBaseInfo extends Component<Props, State> {
@@ -33,9 +35,11 @@ export default class EditBaseInfo extends Component<Props, State> {
     this.state = {
       isOpened: false,
       genderPicker: [{ text: '选择你的性别', value: '0' }, { text: '男', value: '1' }, { text: '女', value: '2' }],
-      gender: '0', // 不是男也不是女 性别未知
+      gender: 0, // 不是男也不是女 性别未知
       birthday: '选择你的出生日期',
       photoUrl: '',
+      ImagePrivew: '',
+      userInfo: {uid: 0, username: '', mobile: ''},
       logout: false
     }
   }
@@ -49,14 +53,26 @@ export default class EditBaseInfo extends Component<Props, State> {
   componentDidShow() {
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.userInfo !== nextProps.userInfo) {
-      this.echoBaseinfo(nextProps.userInfo)
-    }
-  }
 
   fetchUserInfo() {
-    getUserInfo()
+    getUserInfo().then( (res:{data:UserInfo, code: number, userPic: string}) => {
+      if (res.code == 200) {
+        let sex = 0
+        let birthday = ''
+        if (res.data.sex) {
+          sex = res.data.sex === '男' ? 1 : 2
+        }
+        if (res.data.birthday) {
+          birthday = res.data.birthday.substring(0, 10).replace('/', '-').replace('/', '-')
+        }
+        this.setState({
+          userInfo: res.data,
+          ImagePrivew: res.data.userPic,
+          gender: sex,
+          birthday
+        })
+      }
+    })
   }
 
   upload = file => {
@@ -86,24 +102,6 @@ export default class EditBaseInfo extends Component<Props, State> {
     xhr.send(formData)
   }
 
-  echoBaseinfo = userInfo => {
-    if (userInfo.sex) {
-      this.setState({
-        gender: userInfo.sex === '男' ? '1' : '2'
-      })
-    }
-    if (userInfo.userPic) {
-      this.setState({
-        photoUrl: userInfo.userPic
-      })
-    }
-    if (userInfo.birthday) {
-      let birthday = userInfo.birthday.substring(0, 10).replace('/', '-').replace('/', '-')
-      this.setState({
-        birthday: birthday
-      })
-    }
-  }
   editName = () => {
     Taro.navigateTo({
       url: '/pages/user/editInfo/editName'
@@ -112,8 +110,8 @@ export default class EditBaseInfo extends Component<Props, State> {
   // 修改信息接口
   editInfo(type) {
     let param = {
-      uid: this.props.userInfo.uid,
-      sex: '',
+      uid: this.state.userInfo.uid,
+      sex: 0,
       birthday: ''
     }
     if (type == 'sex') {
@@ -125,36 +123,26 @@ export default class EditBaseInfo extends Component<Props, State> {
       delete param.sex
     }
 
-    this.props.dispatch({
-      type: 'user/infoEdit',
-      payload: param,
-      callback: data => {
-        if (data.code == 200) {
-          Taro.showToast({
-            title: '修改成功',
-            icon: 'success',
-            duration: 2000
-          }).then()
-        } else {
-          Taro.showToast({
-            title: '修改失败',
-            icon: 'none',
-            duration: 2000
-          })
-            .then
-            // this.props.getType('account')
-            ()
-        }
+    infoEdit(param).then( res => {
+      if (res.code == 200) {
+        Taro.showToast({
+          title: '修改成功',
+          icon: 'success',
+          duration: 2000
+        })
+      } else {
+        Taro.showToast({
+          title: '修改失败',
+          icon: 'none',
+          duration: 2000
+        })
       }
     })
   }
   onCancel = () => {
-    this.setState()
   }
-  // 選擇性別
+  // 选择性别
   sexChange = e => {
-    // 友盟埋点
-    cnzzTrackEvent('用户信息编辑', '性别选择')
     this.setState(
       {
         gender: e.detail.value
@@ -162,10 +150,8 @@ export default class EditBaseInfo extends Component<Props, State> {
       () => this.editInfo('sex')
     )
   }
-  // 選擇生日
+  // 选择生日
   onDateChange = e => {
-    // 友盟埋点
-    cnzzTrackEvent('用户信息编辑', '生日选择')
     this.setState(
       {
         birthday: e.detail.value
@@ -174,10 +160,46 @@ export default class EditBaseInfo extends Component<Props, State> {
     )
   }
 
-  //退出登录
+  onChangeFile =(e) =>{
+    let file = e.target.files[0]
+    if(!this.fileFromart(file)){
+      Taro.showToast({
+        title:'大小不能超过1M',
+        icon:'none'
+      })
+      return
+    }
+    const reader = new FileReader()
+    const _this = this
+    reader.onload = ( event:ProgressEvent<FileReader>) => {
+      const src:string = event.target ? event.target.result+'' : ''
+      // const image = new Image();
+      // image.src = src
+      _this.setState({
+        ImagePrivew: src
+      })
+      _this.upload(file)
+    }
+    reader.readAsDataURL(file);
+  }
+
+  fileFromart(file){
+    let fileSize = file.size / 1024 / 1024 < 1;
+    if(!fileSize){
+      return false
+    }
+    return true
+  }
+  fmtDate(){
+    var date =  new Date();
+    var y = date.getFullYear();
+    var m =(date.getMonth()+1);
+    var d = date.getDate();
+    return y+"-"+m+"-"+d;
+  }
+
+  // 退出登录
   exitLogin = () => {
-    // 友盟埋点
-    cnzzTrackEvent('用户编辑', '退出登录')
     Taro.redirectTo({
       url: '/pages/user/index'
     })
@@ -189,7 +211,7 @@ export default class EditBaseInfo extends Component<Props, State> {
     removeStorage('openid')
     removeStorage('Token')
     removeStorage('loginStatus')
-    sessionStorage.removeItem('userInfo')
+    removeStorage('userInfo')
   }
   goBack = () => {
     Taro.redirectTo({
@@ -198,8 +220,7 @@ export default class EditBaseInfo extends Component<Props, State> {
   }
 
   render() {
-    let { userInfo } = this.props
-    let { genderPicker, gender, job, address, birthday, photoUrl } = this.state
+    let { genderPicker, gender,  birthday, photoUrl, userInfo, ImagePrivew } = this.state
 
     return (
       <View className='edit-info'>
@@ -207,46 +228,40 @@ export default class EditBaseInfo extends Component<Props, State> {
         <View style='height:20px;' />
         <View className='mine-info'>
           <View className='relative-warp'>
-            {/* <Avatar onReadImageURL={this.upload} avatarUrl={this.props.userInfo.userPic} /> */}
-            <Image className='image-picker' src={ImagePicker} />
+            <View className='Avatar'>
+              <Input
+                type='file'
+                accept='image/*'
+                className='input-file'
+                id='file'
+                onInput={(e) => this.onChangeFile(e)}
+                value={ImagePrivew}
+              />
+              <Label for='file' className='label-file'>
+                {
+                  ImagePrivew ?  <Image className='user-photo' src={ImagePrivew} /> :  <AtAvatar className='user-photo' circle text=''></AtAvatar>
+                }
+                <Image className='image-picker' src='https://assets.taozugong.com/baozugong/user/imagepicker.png' onClick={this.upload} />
+              </Label>
+            </View>
           </View>
-          {/* <View className='user_name'>
-                        <Text className='user-name'>{userInfo.username}</Text>
-                        <Image className='edit-name'  src={EditName} />
-                    </View> */}
         </View>
-        {/* <View className='common-title'>
-                    <Text className='title'>实名认证</Text>
-                    <Text className='intro'>通过信用认证，可享受信用免押金</Text>
-                    <View className='authentication' onClick={userInfo.isPass!==2 ? this.authentication :null}>
-                        <AtList hasBorder={false}>
-                            <AtListItem title='身份证信息' extraText={userInfo.isPass !==2 ? '去认证':'已认证'} arrow='right' />
-                        </AtList>
-                    </View>
-                </View> */}
         <View style='height:1px' />
         <View className='common-title'>
           <Text className='title'>个人信息</Text>
-          <Text className='intro'>完善个人信息有助于租赁风控的通过</Text>
+          {/* <Text className='intro'>完善个人信息有助于租赁风控的通过</Text> */}
           <View style='height:20px;margin-left:0px;border-bottom:1PX solid #d6e4ef;' />
           <AtList hasBorder={false}>
             {/* 用户名 */}
-            <View className='picker' onclick={this.editName}>
+            <View className='picker' onClick={this.editName}>
               <AtListItem title='用户名' extraText={userInfo.username} arrow='right' />
             </View>
-            <Picker
-              mode='selector'
-              range={genderPicker}
-              onCancel={this.onCancel}
-              rangeKey='text'
-              value={gender}
-              onChange={this.sexChange}
-            >
+            <Picker mode='selector' range={genderPicker} onCancel={this.onCancel} rangeKey='text' value={gender} onChange={this.sexChange}>
               <View className='picker'>
                 <AtListItem title='性别' extraText={genderPicker[gender].text} arrow='right' />
               </View>
             </Picker>
-            <Picker mode='date' onChange={this.onDateChange} value={birthday} end={fmtDate()}>
+            <Picker mode='date' onChange={this.onDateChange} value={birthday} end={this.fmtDate()}>
               <View className='picker'>
                 <AtListItem title='生日' extraText={birthday} arrow='right' />
               </View>
@@ -257,14 +272,7 @@ export default class EditBaseInfo extends Component<Props, State> {
           退出登录
         </View>
 
-        <AtModal
-          isOpened={this.state.logout}
-          cancelText='取消'
-          confirmText='确认'
-          onCancel={() => this.setState({ logout: false })}
-          onConfirm={() => this.exitLogin()}
-          content='确认退出登陆'
-        />
+        <AtModal isOpened={this.state.logout} onCancel={() => this.setState({ logout: false })} onConfirm={() => this.exitLogin()} content='确认退出登录' cancelText='取消' confirmText='确认'/>
       </View>
     )
   }

@@ -6,6 +6,7 @@ import { setStorage, getStorage } from '../../utils/storage';
 import './index.scss'
 import { checkToken } from '../../utils/accredit';
 import { ysfConfig } from '../../utils/kefu'
+import { getUserInfo } from './server';
 
 const URL = 'https://assets.taozugong.com/baozugong/activity/hellobzg/'
 
@@ -17,7 +18,9 @@ declare global {
 export interface Props{
   good: Menu;
 }
-export interface UserInfo{ uid: number, username: string, mobile: string}
+export interface UserInfo{
+  birthday?: any; sex?: string; userPic?: string; uid: number; username: string; mobile: string
+}
 export interface State{
   menuList: Array<Menu>;
   userInfo: UserInfo
@@ -39,6 +42,7 @@ export default class Index extends Component<Props, State> {
         { name: '我的余额', right: '188.5', to:'/pages/user/balance/index' },
         { name: '邀请好友', to:'/pages/user/inviteUser/index' },
         { name: '帮助中心', to:'/pages/activity/betaRegister/hello' },
+        { name: '意见反馈', to:'/pages/user/feedback/index', checkLogin: true },
         { name: '退出登录', to:'/pages/activity/betaRegister/hello' }
       ],
       userInfo: {
@@ -63,7 +67,18 @@ export default class Index extends Component<Props, State> {
           isLogin: true
         });
       }
+      this.getUserInfo()
     }
+  }
+  getUserInfo() {
+    getUserInfo().then( (res:{data:UserInfo, code: number}) => {
+      if (res.code == 200) {
+        this.setState({
+          userInfo: res.data
+        })
+        setStorage("userInfo", res.data)
+      }
+    })
   }
   toRegister() {
     Taro.navigateTo({

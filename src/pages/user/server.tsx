@@ -27,6 +27,23 @@ export const getUserInfo = (data?: any) => Request({
   method: 'get',
   data,
 })
+
+/**
+ * 修改个人资料
+ * @param {age,city,province,sex,username} data
+ */
+export const infoEdit = data => Request({
+  url: '/update_user_info',
+  method: 'POST',
+  data,
+})
+
+// 提交意见
+export const upAddidea = data => Request({
+  url: `/upload_suggest`,
+  method: 'POST',
+  data,
+})
   /**
    * 注册
    * @param {mobile, password,verification,channel='APP'} data

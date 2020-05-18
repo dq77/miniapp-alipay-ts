@@ -2,11 +2,13 @@ import Taro, { Component } from '@tarojs/taro'
 import { Button, Text, View } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import './index.scss'
+import { checkToken } from '../../../../utils/accredit'
 
 export interface Props{
   option: Menu;
 }
 export interface Menu{
+  checkLogin?: boolean
   name: string;
   right?: string;
   to: string;
@@ -29,9 +31,17 @@ export default class MySwiper extends Component<Props, State> {
       console.log(item);
   }
   forward = () => {
-    Taro.navigateTo({
-      url: this.props.option.to
-    })
+    if (this.props.option.checkLogin) {
+      checkToken().then( res => {
+        Taro.navigateTo({
+          url: this.props.option.to
+        })
+      })
+    } else {
+      Taro.navigateTo({
+        url: this.props.option.to
+      })
+    }
   }
 
   render() {
