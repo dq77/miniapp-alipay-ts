@@ -1,5 +1,9 @@
+import "@tarojs/async-await";
 import Taro, { Component, Config } from '@tarojs/taro'
 import Index from './pages/index'
+import { Provider } from "@tarojs/redux";
+import dva from "./utils/dva";
+import models from "./model/index";
 
 import './styles/base.scss'
 import './app.scss'
@@ -7,11 +11,11 @@ import './asset/iconfont/iconfont.css'
 
 
 
-// 如果需要在 h5 环境中开启 React Devtools
-// 取消以下注释：
-// if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
-//   require('nerv-devtools')
-// }
+const dvaApp = dva.createApp({
+  initialState: {},
+  models: models,
+});
+const store = dvaApp.getStore();
 
 class App extends Component {
 
@@ -89,7 +93,9 @@ class App extends Component {
   // 请勿修改此函数
   render () {
     return (
-      <Index />
+      <Provider store={store}>
+        <Index />
+      </Provider>
     )
   }
 }

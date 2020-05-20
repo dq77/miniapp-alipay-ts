@@ -1,7 +1,8 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { Component, Dispatch } from '@tarojs/taro'
 import { View, Text, Image, ScrollView } from '@tarojs/components'
 import { AtIcon, AtTabsPane } from 'taro-ui'
 import ListItem, { Menu } from './components/listItem/index'
+import { connect } from '@tarojs/redux'
 import { setStorage, getStorage } from '../../utils/storage';
 import './index.scss'
 import { checkToken } from '../../utils/accredit';
@@ -17,6 +18,7 @@ declare global {
 }
 export interface Props{
   good: Menu;
+  dispatch: Dispatch<any>,
 }
 export interface UserInfo{
   birthday?: any; sex?: string; userPic?: string; uid: number; username: string; mobile: string
