@@ -1,6 +1,6 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "baozugong",
+	"projectname": "alipay-ts",
 	"description": "wudiaoqi",
 	"appid": "wx9c0345f0e22b370a",
 	"setting": {
