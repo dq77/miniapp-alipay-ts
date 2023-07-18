@@ -1,8 +1,8 @@
 {
-  "name": "baozugong",
+  "name": "alpayts",
   "version": "1.0.0",
   "private": true,
-  "description": "包租公",
+  "description": "ts",
   "templateInfo": {
     "name": "default",
     "typescript": true,
