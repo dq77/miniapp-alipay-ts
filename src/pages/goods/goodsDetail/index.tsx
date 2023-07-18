@@ -75,7 +75,7 @@ export default class Index extends Component<object, State> {
               </View>
             </View>
           </View>
-          <View className='tzg-tip'>淘租公提供风险保障</View>
+          <View className='tzg-tip'>小公公提供风险保障</View>
           <View className='good-detail-card'>
             <View className="good-top-info">
               <View className="good-pic-area">
